@@ -1,0 +1,19 @@
+{
+  "name": "leandroboari-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page de Leandro Boari com formulário de contato (Turnstile + SMTP)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "dev": "node --watch --env-file-if-exists=.env server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.3",
+    "nodemailer": "^10.6.1"
+  }
+}
