@@ -12,6 +12,9 @@ const config = {
   port: Number(env("PORT", "3000")),
   host: env("HOST", "127.0.0.1"),
   trustProxy: env("TRUST_PROXY", "loopback"),
+  // Ex.: "cf-connecting-ip" quando o domínio passa pelo proxy da Cloudflare.
+  // Só use se a origem aceitar tráfego apenas via esse proxy (o cabeçalho pode ser forjado).
+  clientIpHeader: env("CLIENT_IP_HEADER").toLowerCase(),
   turnstileSiteKey: env("TURNSTILE_SITE_KEY"),
   turnstileSecret: env("TURNSTILE_SECRET_KEY"),
   allowedHostnames: env("TURNSTILE_HOSTNAMES").split(",").map((s) => s.trim()).filter(Boolean),
@@ -118,8 +121,18 @@ app.get(["/", "/index.html"], sendIndex);
 
 app.use(express.static(PUBLIC_DIR, { index: false, maxAge: "7d" }));
 
+app.get("/healthz", (_req, res) => res.type("text").set("Cache-Control", "no-store").send("ok"));
+
+const clientIp = (req) => {
+  if (config.clientIpHeader) {
+    const v = req.get(config.clientIpHeader);
+    if (v && v.length <= 64) return v.split(",")[0].trim();
+  }
+  return req.ip;
+};
+
 app.post("/api/contact", express.json({ limit: "16kb" }), async (req, res) => {
-  const ip = req.ip;
+  const ip = clientIp(req);
   const fail = (status, error) => res.status(status).json({ ok: false, error });
 
   if (rateLimited(ip)) return fail(429, "Muitas tentativas. Tente novamente em alguns minutos.");
@@ -177,6 +190,15 @@ app.post("/api/contact", express.json({ limit: "16kb" }), async (req, res) => {
 
 app.use((_req, res) => res.status(404).type("text").send("Not found"));
 
-app.listen(config.port, config.host, () => {
+const server = app.listen(config.port, config.host, () => {
   console.log(`leandroboari.com ouvindo em http://${config.host}:${config.port}`);
 });
+
+// Desligamento limpo (no container o Node é o PID 1 e não trata SIGTERM sozinho)
+for (const sig of ["SIGTERM", "SIGINT"]) {
+  process.on(sig, () => {
+    console.log(`${sig} recebido, encerrando...`);
+    server.close(() => process.exit(0));
+    setTimeout(() => process.exit(0), 5000).unref();
+  });
+}

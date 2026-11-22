@@ -1,0 +1,12 @@
+.git
+.gitignore
+.claude
+node_modules
+npm-debug.log*
+.env
+.env.*
+!.env.example
+photos
+Dockerfile
+.dockerignore
+README.md
