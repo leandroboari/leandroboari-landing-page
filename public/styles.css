@@ -386,6 +386,7 @@ h2 em { font-style: normal; color: var(--muted); }
   transition: border-color 0.3s, color 0.3s;
   overflow-wrap: anywhere;
 }
+.contact__mail span { min-width: 0; }
 .contact__mail svg { flex: none; width: 0.8em; height: 0.8em; fill: none; stroke: var(--accent-2); stroke-width: 2; stroke-linecap: round; transition: transform 0.3s var(--ease); }
 .contact__mail:hover { border-color: var(--accent); color: var(--accent-2); }
 .contact__mail:hover svg { transform: translate(4px, -4px); }
@@ -436,7 +437,7 @@ h2 em { font-style: normal; color: var(--muted); }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 980px) {
-  .hero__inner, .stack-wrap, .about, .contact__box { grid-template-columns: 1fr; gap: 56px; }
+  .hero__inner, .stack-wrap, .about, .contact__box { grid-template-columns: minmax(0, 1fr); gap: 56px; }
   .hero__photo { max-width: 520px; width: 100%; margin-inline: auto; }
   .chip { left: 12px; }
   .about__photo { max-width: 460px; }
@@ -456,6 +457,13 @@ h2 em { font-style: normal; color: var(--muted); }
   .about__photo::before { inset: 14px -10px -14px 14px; }
   .scroll-hint { display: none; }
   .hud__label { left: 40px; right: 40px; font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+  .contact__box { padding: 32px 18px; border-radius: 22px; gap: 40px; }
+  .contact__mail { font-size: 19px; gap: 10px; margin: 28px 0 22px; }
+  .form { padding: 20px 14px; border-radius: 16px; gap: 16px; }
+  .cf-turnstile { min-height: 140px; display: flex; justify-content: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
