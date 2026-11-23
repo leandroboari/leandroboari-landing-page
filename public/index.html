@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="img/leandro-robotica-1200.webp" imagesrcset="img/leandro-robotica-720.webp 720w, img/leandro-robotica-1200.webp 1200w" imagesizes="(max-width: 900px) 90vw, 40vw">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -93,14 +93,14 @@
               srcset="img/leandro-robotica-720.webp 720w, img/leandro-robotica-1200.webp 1200w"
               sizes="(max-width: 900px) 90vw, 40vw"
               width="1200" height="1800"
-              alt="Leandro Boari de capacete, segurando o teach pendant de um braço robótico industrial no laboratório"
+              alt="Leandro Boari de capacete, programando um braço robótico Yaskawa Motoman MH5L no laboratório"
               fetchpriority="high">
             <span class="hud hud--tl" aria-hidden="true"></span>
             <span class="hud hud--tr" aria-hidden="true"></span>
             <span class="hud hud--bl" aria-hidden="true"></span>
             <span class="hud hud--br" aria-hidden="true"></span>
             <div class="hud__label hud__label--top mono" aria-hidden="true">
-              <span>CAM_01 · LAB_ROBÓTICA</span><span class="rec">● REC</span>
+              <span>LABORATÓRIO DE ROBÓTICA</span><span class="rec">● REC</span>
             </div>
             <div class="hud__label hud__label--bottom mono" aria-hidden="true">
               <span>SYS.STATUS: <b class="ok">ONLINE</b></span>
@@ -108,7 +108,7 @@
             </div>
           </div>
           <figcaption class="chip mono">
-            <span class="chip__k">J1–J6</span> teach pendant em mãos
+            <span class="chip__k">Yaskawa</span> Motoman MH5L
           </figcaption>
         </figure>
       </div>
@@ -256,27 +256,33 @@
         <div class="about__text">
           <header class="section__head reveal">
             <p class="eyebrow mono">// 03 — sobre</p>
-            <h2>Engenheiro por formação,<br><em>sistêmico por natureza.</em></h2>
+            <h2>A mente de um<br><em>Engenheiro de Controle e Automação.</em></h2>
           </header>
           <div class="reveal">
-            <p>Sou <strong>Leandro Boari</strong>, Engenheiro de Controle e Automação. A engenharia de controle me ensinou a enxergar tudo como sistema: entradas, saídas, realimentação — e o que acontece quando algo sai do esperado.</p>
-            <p>Levo essa visão para cada projeto, seja um dispositivo IoT em campo, uma integração entre plataformas, um modelo de IA ou a arquitetura de segurança de uma operação inteira.</p>
+            <p>Sou <strong>Leandro Boari</strong>, formado pela Universidade Federal de Lavras (UFLA), onde encontrei o ambiente ideal para aprofundar e dar estrutura ao conhecimento técnico que eu já trazia.</p>
+            <p>Minha formação me deu um método de trabalho que sempre coloco em prática: medir, decidir e corrigir continuamente para manter um sistema sempre estável, mesmo quando o cenário muda. Na engenharia de controle, isso se chama <strong>Sistema em Malha Fechada</strong>.</p>
+            <p>É esse o princípio que guia meu trabalho. Seja um dispositivo IoT em campo, uma integração entre plataformas, um modelo de IA ou a arquitetura de segurança de uma operação inteira, todo projeto segue o mesmo ciclo.</p>
           </div>
 
-          <ul class="principles reveal">
+          <ol class="principles reveal" aria-label="O ciclo de cada projeto">
             <li>
               <span class="mono">01</span>
-              <div><strong>Pensamento sistêmico</strong><p>Entender o todo antes de otimizar a parte.</p></div>
+              <div><strong>Medir</strong> <em class="principles__tag mono">sensor</em><p>Entender o cenário real antes de propor qualquer solução: dados, processos e pessoas.</p></div>
             </li>
             <li>
               <span class="mono">02</span>
-              <div><strong>Segurança desde o projeto</strong><p>Proteção não é um patch — é requisito.</p></div>
+              <div><strong>Decidir</strong> <em class="principles__tag mono">controlador</em><p>Arquitetura pensada para o todo, com segurança como requisito — não como patch.</p></div>
             </li>
             <li>
               <span class="mono">03</span>
-              <div><strong>Do protótipo à produção</strong><p>Soluções que funcionam no laboratório e no mundo real.</p></div>
+              <div><strong>Atuar</strong> <em class="principles__tag mono">atuador</em><p>Do protótipo à produção: soluções que funcionam no laboratório e no mundo real.</p></div>
             </li>
-          </ul>
+            <li>
+              <span class="mono">04</span>
+              <div><strong>Realimentar</strong> <em class="principles__tag mono">feedback</em><p>Monitorar, medir de novo e ajustar. Projeto entregue não é projeto encerrado.</p></div>
+            </li>
+          </ol>
+          <p class="principles__loop mono" aria-hidden="true">↺ volta ao 01</p>
         </div>
       </div>
     </section>
@@ -317,6 +323,10 @@
               <input id="f-email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@empresa.com">
             </div>
             <div class="field">
+              <label for="f-phone">Telefone / WhatsApp <span class="field__opt">(opcional)</span></label>
+              <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" pattern="[0-9()+\-\s]{10,20}" placeholder="(35) 99999-9999">
+            </div>
+            <div class="field">
               <label for="f-message">Mensagem</label>
               <textarea id="f-message" name="message" rows="5" required minlength="10" maxlength="5000" placeholder="Conte um pouco sobre o projeto ou a ideia"></textarea>
             </div>
@@ -340,11 +350,11 @@
     <div class="container footer__inner mono">
       <span>© <span id="year">2026</span> Leandro Boari</span>
       <span class="muted">leandroboari.com</span>
-      <span class="muted"><span class="status__dot"></span> all systems nominal</span>
+      <span class="muted"><span class="status__dot"></span> sistema estável</span>
     </div>
   </footer>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="script.js" defer></script>
+  <script src="script.js?v=2" defer></script>
 </body>
 </html>

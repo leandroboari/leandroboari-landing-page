@@ -148,6 +148,7 @@ app.post("/api/contact", express.json({ limit: "16kb" }), async (req, res) => {
   const str = (v) => (typeof v === "string" ? v.trim() : "");
   const name = oneLine(str(b.name));
   const email = str(b.email);
+  const phone = oneLine(str(b.phone));
   const message = str(b.message);
   const token = str(b.token);
 
@@ -156,6 +157,12 @@ app.post("/api/contact", express.json({ limit: "16kb" }), async (req, res) => {
 
   if (name.length < 2 || name.length > 100) return fail(400, "Informe seu nome.");
   if (email.length > 254 || !EMAIL_RE.test(email)) return fail(400, "Informe um e-mail válido.");
+  if (phone) {
+    const digits = phone.replace(/\D/g, "").length;
+    if (phone.length > 20 || !/^[0-9()+\-\s]+$/.test(phone) || digits < 10 || digits > 15) {
+      return fail(400, "Informe um telefone válido, com DDD.");
+    }
+  }
   if (message.length < 10 || message.length > 5000) return fail(400, "A mensagem deve ter entre 10 e 5000 caracteres.");
   if (!token || token.length > 2048) return fail(400, "Confirme a verificação anti-robô.");
 
@@ -171,8 +178,8 @@ app.post("/api/contact", express.json({ limit: "16kb" }), async (req, res) => {
   }
 
   const subject = `[leandroboari.com] Contato de ${name}`.slice(0, 160);
-  const text = `Nome: ${name}\nE-mail: ${email}\nIP: ${ip}\n\n${message}\n`;
-  const html = `<p><b>Nome:</b> ${escapeHtml(name)}<br><b>E-mail:</b> ${escapeHtml(email)}<br><b>IP:</b> ${escapeHtml(ip || "")}</p><p style="white-space:pre-wrap">${escapeHtml(message)}</p>`;
+  const text = `Nome: ${name}\nE-mail: ${email}\nTelefone: ${phone || "-"}\nIP: ${ip}\n\n${message}\n`;
+  const html = `<p><b>Nome:</b> ${escapeHtml(name)}<br><b>E-mail:</b> ${escapeHtml(email)}<br><b>Telefone:</b> ${escapeHtml(phone || "-")}<br><b>IP:</b> ${escapeHtml(ip || "")}</p><p style="white-space:pre-wrap">${escapeHtml(message)}</p>`;
 
   if (!transport) {
     console.log("---- [DEV] mensagem de contato ----\n" + subject + "\n" + text + "-----------------------------------");

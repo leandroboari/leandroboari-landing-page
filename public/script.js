@@ -93,6 +93,17 @@
 
     form.addEventListener("input", (e) => e.target.closest(".field")?.classList.remove("is-invalid"));
 
+    // Máscara de telefone BR: (DD) 9XXXX-XXXX. Números com "+" ficam livres (internacional).
+    const phone = form.querySelector("#f-phone");
+    phone?.addEventListener("input", () => {
+      if (phone.value.trim().startsWith("+")) return;
+      const d = phone.value.replace(/\D/g, "").slice(0, 11);
+      let out = d;
+      if (d.length > 2) out = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+      if (d.length > 6) out = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
+      phone.value = out;
+    });
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       setStatus("");
@@ -122,6 +133,7 @@
           body: JSON.stringify({
             name: data.get("name"),
             email: data.get("email"),
+            phone: data.get("phone"),
             message: data.get("message"),
             website: data.get("website"),
             token,
