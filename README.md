@@ -10,7 +10,6 @@ recebe o formulário de contato, valida o **Cloudflare Turnstile** e envia o e-m
 - `public/` — o site (HTML, CSS, JS, imagens). Só esta pasta é exposta.
 - `server.js` — servidor + `POST /api/contact`
 - `.env.example` — todas as variáveis de configuração
-- `photos/` — fotos originais (não são servidas)
 
 ## Rodando localmente
 
