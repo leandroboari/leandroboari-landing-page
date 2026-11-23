@@ -21,7 +21,8 @@ const config = {
   smtp: {
     host: env("SMTP_HOST"),
     port: Number(env("SMTP_PORT", "587")),
-    secure: env("SMTP_SECURE", "false") === "true",
+    // Sem SMTP_SECURE explícito: TLS implícito só na 465 (587/25 usam STARTTLS).
+    secure: env("SMTP_SECURE") ? env("SMTP_SECURE") === "true" : env("SMTP_PORT", "587") === "465",
     user: env("SMTP_USER"),
     pass: env("SMTP_PASS"),
   },
@@ -52,7 +53,13 @@ if (config.smtp.host) {
   });
   transport.verify()
     .then(() => console.log(`SMTP pronto (${config.smtp.host}:${config.smtp.port}).`))
-    .catch((err) => console.error("Falha ao conectar no SMTP:", err.message));
+    .catch((err) => {
+      console.error("Falha ao conectar no SMTP:", err.message);
+      if (/wrong version number/i.test(err.message)) {
+        console.error(`Dica: SMTP_SECURE=${config.smtp.secure} não combina com a porta ${config.smtp.port}. ` +
+          "Use SMTP_SECURE=true só com a porta 465; com 587 use SMTP_SECURE=false (STARTTLS).");
+      }
+    });
 } else {
   console.warn("SMTP_HOST não definido: modo de desenvolvimento, as mensagens serão só exibidas no log.");
 }
@@ -192,6 +199,9 @@ app.use((_req, res) => res.status(404).type("text").send("Not found"));
 
 const server = app.listen(config.port, config.host, () => {
   console.log(`leandroboari.com ouvindo em http://${config.host}:${config.port}`);
+  if (config.host === "127.0.0.1" && process.env.NODE_ENV === "production") {
+    console.warn("Aviso: HOST=127.0.0.1 deixa o app inacessível fora do container. No Docker/Coolify use HOST=0.0.0.0 (ou remova a variável).");
+  }
 });
 
 // Desligamento limpo (no container o Node é o PID 1 e não trata SIGTERM sozinho)
