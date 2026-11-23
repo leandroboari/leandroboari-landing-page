@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="img/leandro-robotica-1200.webp" imagesrcset="img/leandro-robotica-720.webp 720w, img/leandro-robotica-1200.webp 1200w" imagesizes="(max-width: 900px) 90vw, 40vw">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=6">
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -261,31 +261,143 @@
             <h2>A mente de um<br><em>Engenheiro de Controle e Automação.</em></h2>
           </header>
           <div class="reveal">
-            <p>Sou <strong>Leandro Boari</strong>, formado pela Universidade Federal de Lavras (UFLA), onde encontrei o ambiente ideal para aprofundar e dar estrutura ao conhecimento técnico que eu já trazia.</p>
-            <p>Minha formação me deu um método de trabalho que sempre coloco em prática: medir, decidir e corrigir continuamente para manter um sistema sempre estável, mesmo quando o cenário muda. Na engenharia de controle, isso se chama <strong>Sistema em Malha Fechada</strong>.</p>
-            <p>É esse o princípio que guia meu trabalho. Seja um dispositivo IoT em campo, uma integração entre plataformas, um modelo de IA ou a arquitetura de segurança de uma operação inteira, todo projeto segue o mesmo ciclo.</p>
+            <p>Sou <strong>Leandro Boari</strong>, engenheiro de Controle e Automação formado pela <strong>Universidade Federal de Lavras (UFLA)</strong>, onde aprofundei e estruturei conhecimentos técnicos que já desenvolvia na prática. Minha formação consolidou uma maneira de resolver problemas: <strong>observar, medir, decidir e corrigir continuamente</strong>, seguindo o princípio dos <strong>Sistemas em Malha Fechada</strong>, nos quais a realimentação permite adaptar o sistema às mudanças e manter seu desempenho.</p>
+            <p>Essa filosofia orienta meu trabalho em <strong>automação industrial, IoT, integração de plataformas, inteligência artificial e segurança de sistemas</strong>. Acredito que a boa engenharia vai além de fazer algo funcionar: é desenvolver soluções confiáveis, capazes de se adaptar, evoluir e entregar resultados consistentes.</p>
           </div>
-
-          <ol class="principles reveal" aria-label="O ciclo de cada projeto">
-            <li>
-              <span class="mono">01</span>
-              <div><strong>Medir</strong> <em class="principles__tag mono">sensor</em><p>Entender o cenário real antes de propor qualquer solução: dados, processos e pessoas.</p></div>
-            </li>
-            <li>
-              <span class="mono">02</span>
-              <div><strong>Decidir</strong> <em class="principles__tag mono">controlador</em><p>Arquitetura pensada para o todo, com segurança como requisito — não como patch.</p></div>
-            </li>
-            <li>
-              <span class="mono">03</span>
-              <div><strong>Atuar</strong> <em class="principles__tag mono">atuador</em><p>Do protótipo à produção: soluções que funcionam no laboratório e no mundo real.</p></div>
-            </li>
-            <li>
-              <span class="mono">04</span>
-              <div><strong>Realimentar</strong> <em class="principles__tag mono">feedback</em><p>Monitorar, medir de novo e ajustar. Projeto entregue não é projeto encerrado.</p></div>
-            </li>
-          </ol>
-          <p class="principles__loop mono" aria-hidden="true">↺ volta ao 01</p>
         </div>
+      </div>
+
+      <div class="container loop">
+        <header class="loop__head reveal">
+          <p class="eyebrow mono">// malha fechada</p>
+          <h3>Como conduzo cada projeto</h3>
+        </header>
+        <figure class="loop__diagram reveal">
+            <svg class="loop__svg loop__svg--wide" viewBox="0 0 1000 380" role="img" aria-labelledby="loop-title-w">
+              <title id="loop-title-w">Diagrama de malha fechada: o objetivo entra no comparador, o controlador decide, o atuador age sobre o processo, o sensor mede o resultado e a realimentação devolve a medição ao comparador.</title>
+              <defs>
+                <marker id="ah-b-w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7aa5ff"/></marker>
+                <marker id="ah-g-w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#20e3a2"/></marker>
+              </defs>
+              <path class="wire wire--fwd" d="M40 130H124" marker-end="url(#ah-b-w)"/>
+              <path class="wire wire--fwd" d="M174 130H218" marker-end="url(#ah-b-w)"/>
+              <path class="wire wire--fwd" d="M400 130H458" marker-end="url(#ah-b-w)"/>
+              <path class="wire wire--fwd" d="M640 130H698" marker-end="url(#ah-b-w)"/>
+              <path class="wire wire--fwd" d="M880 130H980" marker-end="url(#ah-b-w)"/>
+              <path class="wire wire--fb" d="M930 130V310H642" marker-end="url(#ah-g-w)"/>
+              <path class="wire wire--fb" d="M460 310H150V156" marker-end="url(#ah-g-w)"/>
+              <g class="pulse">
+                <circle class="pulse__halo" r="11"/><circle class="pulse__core" r="4.5"/>
+                <animateMotion dur="8s" repeatCount="indefinite" path="M174 130H930V310H150V154"/>
+              </g>
+              <circle class="node" cx="930" cy="130" r="4.5"/>
+              <text class="lbl" x="40" y="114">OBJETIVO</text>
+              <text class="lbl lbl--c" x="196" y="114">erro</text>
+              <text class="lbl lbl--c" x="429" y="114">ação</text>
+              <text class="lbl lbl--c" x="955" y="114">RESULTADO</text>
+              <text class="lbl lbl--c" x="786" y="296">medição</text>
+              <text class="lbl lbl--c lbl--fb" x="305" y="296">04 · REALIMENTAR</text>
+              <g class="blk blk--sum">
+                <circle cx="150" cy="130" r="24"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.08;0.97;1" values="#7aa5ff;rgba(255,255,255,0.14);rgba(255,255,255,0.14);#7aa5ff"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.08;0.97;1" values="#1d283d;#0b1018;#0b1018;#1d283d"/></circle>
+                <text class="sum__t" x="150" y="131">Σ</text>
+              </g>
+              <text class="sign" x="114" y="112">+</text>
+              <text class="sign" x="168" y="174">−</text>
+              <g class="blk blk--ctrl">
+                <rect x="220" y="88" width="180" height="84" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.038;0.078;0.173;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#7aa5ff;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.038;0.078;0.173;1" values="#0b1018;#0b1018;#1d283d;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="310" y="118">02 · CONTROLADOR</text>
+                <text class="blk__name" x="310" y="150">Decidir</text>
+              </g>
+              <g class="blk blk--act">
+                <rect x="460" y="88" width="180" height="84" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.166;0.206;0.301;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#7aa5ff;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.166;0.206;0.301;1" values="#0b1018;#0b1018;#1d283d;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="550" y="118">03 · ATUADOR</text>
+                <text class="blk__name" x="550" y="150">Atuar</text>
+              </g>
+              <g class="blk blk--plant">
+                <rect x="700" y="88" width="180" height="84" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.294;0.334;0.429;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#c3ccd8;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.294;0.334;0.429;1" values="#0b1018;#0b1018;#282e37;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="790" y="118">PLANTA</text>
+                <text class="blk__name" x="790" y="150">Processo</text>
+              </g>
+              <g class="blk blk--sensor">
+                <rect x="460" y="268" width="180" height="84" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.668;0.708;0.803;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#20e3a2;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.668;0.708;0.803;1" values="#0b1018;#0b1018;#0e322e;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="550" y="298">01 · SENSOR</text>
+                <text class="blk__name" x="550" y="330">Medir</text>
+              </g>
+            </svg>
+            <svg class="loop__svg loop__svg--tall" viewBox="0 0 360 560" role="img" aria-labelledby="loop-title-t">
+              <title id="loop-title-t">Diagrama de malha fechada: o objetivo entra no comparador, o controlador decide, o atuador age sobre o processo, o sensor mede o resultado e a realimentação devolve a medição ao comparador.</title>
+              <defs>
+                <marker id="ah-b-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7aa5ff"/></marker>
+                <marker id="ah-g-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#20e3a2"/></marker>
+              </defs>
+              <path class="wire wire--fwd" d="M120 8V46" marker-end="url(#ah-b-t)"/>
+              <path class="wire wire--fwd" d="M120 92V128" marker-end="url(#ah-b-t)"/>
+              <path class="wire wire--fwd" d="M120 196V238" marker-end="url(#ah-b-t)"/>
+              <path class="wire wire--fwd" d="M120 306V348" marker-end="url(#ah-b-t)"/>
+              <path class="wire wire--fwd" d="M120 416V552" marker-end="url(#ah-b-t)"/>
+              <path class="wire wire--fb" d="M120 470H295V312" marker-end="url(#ah-g-t)"/>
+              <path class="wire wire--fb" d="M295 240V70H144" marker-end="url(#ah-g-t)"/>
+              <g class="pulse">
+                <circle class="pulse__halo" r="11"/><circle class="pulse__core" r="4.5"/>
+                <animateMotion dur="8s" repeatCount="indefinite" path="M120 92V470H295V70H144"/>
+              </g>
+              <circle class="node" cx="120" cy="470" r="4.5"/>
+              <text class="lbl" x="132" y="28">OBJETIVO</text>
+              <text class="lbl" x="132" y="115">erro</text>
+              <text class="lbl" x="132" y="222">ação</text>
+              <text class="lbl" x="132" y="536">RESULTADO</text>
+              <text class="lbl lbl--c" x="207" y="490">medição</text>
+              <text class="lbl lbl--c lbl--fb" transform="translate(313 155) rotate(90)">04 · REALIMENTAR</text>
+              <g class="blk blk--sum">
+                <circle cx="120" cy="70" r="22"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.08;0.97;1" values="#7aa5ff;rgba(255,255,255,0.14);rgba(255,255,255,0.14);#7aa5ff"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.08;0.97;1" values="#1d283d;#0b1018;#0b1018;#1d283d"/></circle>
+                <text class="sum__t" x="120" y="71">Σ</text>
+              </g>
+              <text class="sign" x="102" y="40">+</text>
+              <text class="sign" x="156" y="52">−</text>
+              <g class="blk blk--ctrl">
+                <rect x="20" y="130" width="200" height="66" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.029;0.069;0.164;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#7aa5ff;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.029;0.069;0.164;1" values="#0b1018;#0b1018;#1d283d;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="120" y="155">02 · CONTROLADOR</text>
+                <text class="blk__name" x="120" y="183">Decidir</text>
+              </g>
+              <g class="blk blk--act">
+                <rect x="20" y="240" width="200" height="66" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.129;0.169;0.264;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#7aa5ff;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.129;0.169;0.264;1" values="#0b1018;#0b1018;#1d283d;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="120" y="265">03 · ATUADOR</text>
+                <text class="blk__name" x="120" y="293">Atuar</text>
+              </g>
+              <g class="blk blk--plant">
+                <rect x="20" y="350" width="200" height="66" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.229;0.269;0.364;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#c3ccd8;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.229;0.269;0.364;1" values="#0b1018;#0b1018;#282e37;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="120" y="375">PLANTA</text>
+                <text class="blk__name" x="120" y="403">Processo</text>
+              </g>
+              <g class="blk blk--sensor">
+                <rect x="240" y="240" width="110" height="70" rx="14"><animate attributeName="stroke" dur="8s" repeatCount="indefinite" keyTimes="0;0.643;0.683;0.778;1" values="rgba(255,255,255,0.14);rgba(255,255,255,0.14);#20e3a2;rgba(255,255,255,0.14);rgba(255,255,255,0.14)"/><animate attributeName="fill" dur="8s" repeatCount="indefinite" keyTimes="0;0.643;0.683;0.778;1" values="#0b1018;#0b1018;#0e322e;#0b1018;#0b1018"/></rect>
+                <text class="blk__tag" x="295" y="267">01 · SENSOR</text>
+                <text class="blk__name" x="295" y="295">Medir</text>
+              </g>
+            </svg>
+        </figure>
+        <ol class="loop__steps reveal" aria-label="As etapas da malha fechada">
+          <li class="loop__step loop__step--1">
+            <div class="loop__step-top"><span class="mono">01</span><em class="loop__tag mono">sensor</em></div>
+            <strong>Medir</strong>
+            <p>Entender o cenário real antes de propor qualquer solução: dados, processos e pessoas.</p>
+          </li>
+          <li class="loop__step loop__step--2">
+            <div class="loop__step-top"><span class="mono">02</span><em class="loop__tag mono">controlador</em></div>
+            <strong>Decidir</strong>
+            <p>Arquitetura pensada para o todo, com segurança como requisito — não como patch.</p>
+          </li>
+          <li class="loop__step loop__step--3">
+            <div class="loop__step-top"><span class="mono">03</span><em class="loop__tag mono">atuador</em></div>
+            <strong>Atuar</strong>
+            <p>Do protótipo à produção: soluções que funcionam no laboratório e no mundo real.</p>
+          </li>
+          <li class="loop__step loop__step--4">
+            <div class="loop__step-top"><span class="mono">04</span><em class="loop__tag mono">feedback</em></div>
+            <strong>Realimentar</strong>
+            <p>Monitorar, medir de novo e ajustar. Projeto entregue não é projeto encerrado.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -361,6 +473,6 @@
   </footer>
 
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  <script src="script.js?v=2" defer></script>
+  <script src="script.js?v=3" defer></script>
 </body>
 </html>

@@ -79,6 +79,11 @@
     });
   });
 
+  /* Malha fechada: sem animação para quem prefere movimento reduzido */
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".loop__svg").forEach((svg) => { try { svg.setCurrentTime(4); svg.pauseAnimations(); } catch (_) {} });
+  }
+
   /* Contact form */
   const form = document.getElementById("contact-form");
   if (form) {
